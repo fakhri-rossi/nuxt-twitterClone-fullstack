@@ -12,5 +12,9 @@ export default defineNuxtConfig({
     },
     config: {},
     viewer: true,
+  },
+
+  colorMode: {
+    preference: 'light'
   }
 })

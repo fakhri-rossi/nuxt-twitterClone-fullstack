@@ -14,6 +14,10 @@ export default defineNuxtConfig({
     viewer: true,
   },
 
+  ui: {
+    icons: ['ic']
+  },
+
   colorMode: {
     preference: 'light'
   }

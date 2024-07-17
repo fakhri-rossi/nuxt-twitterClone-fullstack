@@ -13,7 +13,13 @@
     "@iconify-json/ic": "^1.1.17",
     "@nuxt/ui": "^2.17.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@prisma/nuxt": "^0.0.30",
+    "bcrypt": "^5.1.1",
     "nuxt": "^3.12.3",
     "vue": "latest"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.17.0",
+    "prisma": "^5.17.0"
   }
 }

@@ -13,7 +13,7 @@
           </div>
   
           <!-- main content -->
-           <main class="bg-red-500 col-span-12 md:col-span-8 lg:col-span-6">
+           <main class="col-span-12 md:col-span-8 lg:col-span-6">
              <NuxtPage />
            </main>
 

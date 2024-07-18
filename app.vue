@@ -1,7 +1,9 @@
 <template>
   <div :class="{ dark: enableDarkMode }">
     <div class="bg-white dark:bg-dim-900">
-      <div class="min-h-full">
+
+      <!-- main app -->
+      <div v-if="user" class="min-h-full">
   
         <div class="grid grid-cols-12 mx-auto md:px-4 lg:max-w-7xl lg:px-8 gap-3 lg:gap-5">
   
@@ -26,11 +28,22 @@
         </div>
       </div>
 
+      <!-- auth page -->
+      <div v-else>
+        <AuthPage />
+      </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
 const enableDarkMode = ref(false);
+const { useAuthUser, initAuth } = useAuth();
+const user = useAuthUser();
+
+onBeforeMount(() => {
+  initAuth();
+})
 
 </script>

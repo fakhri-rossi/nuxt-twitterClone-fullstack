@@ -40,5 +40,9 @@ export default <Partial<Config>>{
     'docs/content/**/*.md'
   ],
 
+  plugins: [
+    require('@tailwindcss/forms')
+  ]
+  
 
 }

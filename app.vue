@@ -2,8 +2,11 @@
   <div :class="{ dark: enableDarkMode }">
     <div class="bg-white dark:bg-dim-900">
 
+      <!-- Loading -->
+       <LoadingPage v-if="isLoading" />
+
       <!-- main app -->
-      <div v-if="user" class="min-h-full">
+      <div v-else-if="user" class="min-h-full">
   
         <div class="grid grid-cols-12 mx-auto md:px-4 lg:max-w-7xl lg:px-8 gap-3 lg:gap-5">
   
@@ -39,8 +42,9 @@
 
 <script setup>
 const enableDarkMode = ref(false);
-const { useAuthUser, initAuth } = useAuth();
+const { useAuthUser, initAuth, useAuthLoading } = useAuth();
 const user = useAuthUser();
+const isLoading = useAuthLoading();
 
 onBeforeMount(() => {
   initAuth();

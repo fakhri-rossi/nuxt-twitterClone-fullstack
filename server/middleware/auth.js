@@ -6,12 +6,10 @@ import { getUserById } from "../db/users";
 
 export default defineEventHandler(async (event) => {
   const endPoints = [
-    '/api/auth/user'
+    '/api/auth/user',
+    '/api/user/tweets'
   ]
 
-  // const isHandledByThisMiddleware = () => {
-  //   return endPoints.includes(event.path)
-  // }
   const isHandledByThisMiddleware = endPoints.some(endpoint => {
     const pattern = new UrlPattern(endpoint);
 
@@ -22,8 +20,7 @@ export default defineEventHandler(async (event) => {
     return
   }
 
-  const token = event.headers.get('authorization').split(' ')[1];
-  console.log(token);
+  const token = event.headers.get('authorization')?.split(' ')[1];
 
   const decoded = await decodeAccessToken(token);
 

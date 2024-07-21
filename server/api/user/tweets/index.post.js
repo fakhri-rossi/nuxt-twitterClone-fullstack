@@ -18,8 +18,6 @@ export default defineEventHandler(async (event) => {
   const { fields, files } = response;
   const userId = event.context?.auth?.user?.id;
 
-  // const text = typeof(fields.text.text);
-  // console.log(text);
 
   const tweetData = {
     text: fields.text[0],
@@ -30,12 +28,9 @@ export default defineEventHandler(async (event) => {
 
   const filePromises = Object.keys(files).map(async key => {
     const file = files[key]
-
-    // const response = await uploadToCloudinary(file.filepath)
-    const cloudinaryResource = await uploadToCloudinary('testImage/pemandangan.jpg');
-
-    console.log(file.filepath);
-    console.log(cloudinaryResource);
+    const cloudinaryResource = await uploadToCloudinary(file[0].filepath
+      // , {resource_type: "raw"}
+    );
 
     return createMediaFile({
       url: cloudinaryResource.secure_url,
@@ -50,7 +45,7 @@ export default defineEventHandler(async (event) => {
   return {
     // files
     tweet: tweetTransformer(tweet),
-    files,
+    // files,
     // tweetData: tweetTransformer(tweetData)
   }
 })

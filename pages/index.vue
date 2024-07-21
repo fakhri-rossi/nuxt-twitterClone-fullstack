@@ -1,6 +1,9 @@
 <template>
   <MainSection title="Home" :loading="loading">
-    {{ user }}
+    <!-- {{ user }} -->
+
+    <TweetForm :user="user" />
+
   </MainSection>
   <button @click="getUser">Get User!</button>
 </template>

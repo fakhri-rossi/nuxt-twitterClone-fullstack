@@ -15,6 +15,20 @@
     <!-- tabs -->
     <SidebarLeftTab />
 
+    <div class="mt-6 hidden lg:block">
+      <UiButton liquid>
+        <span class="font-bold">
+          Tweet
+        </span>
+      </UiButton>
+    </div>
+
+    <div class="mt-6 flex lg:hidden items-center p-3">
+      <UiButton>
+        <UIcon  class="h-6 w-6" name="i-ic-baseline-edit" />
+      </UiButton>
+    </div>
+
   </div>
 </template>
 

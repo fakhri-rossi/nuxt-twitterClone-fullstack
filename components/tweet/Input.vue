@@ -7,7 +7,7 @@
       </div>
 
       <div class="w-full p-2">
-        <textarea v-model="text" class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0">
+        <textarea v-model="text" :placeholder="props.placeHolder"class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0">
 
         </textarea>
       </div>
@@ -16,20 +16,32 @@
 
     <!-- file selector -->
     <div class="p-4 pl-16 ">
+      <img v-if="inputImageUrl" :src="inputImageUrl" alt=""
+      class="rounded-2xl border" :class="twitterBorderColor" >
       <input type="file" ref="imageInput" hidden
       accept="image/png, image/gif, image/jpeg, image/jpg" @change="handleImageChange">
     </div>
 
-    <!-- inputMenu icons -->
     <div class="flex p-2 pl-14">
-      <div v-for="(inputMenu, i) in inputMenus" :key="i" class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer flex items-center" @click="inputMenu.click">
-        <UIcon class="w-6 h-6" :name="inputMenu.icon" />
+      <div class="flex text-white w-full">
+        
+        <!-- inputMenu icons -->
+        <div v-for="(inputMenu, i) in inputMenus" :key="i" class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer flex items-center" @click="inputMenu.click">
+          <UIcon class="w-6 h-6" :name="inputMenu.icon" />
+        </div>
+        
       </div>
+
+      <div class="ml-auto">
+        <UiButton size="sm" :disabled="isDisabled" @on-click="handleFormSubmit">
+          <span class="font-bold">
+            Tweet
+          </span>
+        </UiButton>
+      </div>
+
     </div>
 
-    <div>
-      <button @click="handleFormSubmit">Tweet</button>
-    </div>
 
   </div>
 </template>
@@ -38,7 +50,10 @@
 const imageInput = ref();
 const text = ref('');
 const selectedFile = ref(null);
+const inputImageUrl = ref(null);
 const emits = defineEmits(['onSubmit']);
+const { twitterBorderColor } = useTailwindConfig();
+const isDisabled = computed(() => text.value === '')
 
 const inputMenus = [
   { 
@@ -72,6 +87,10 @@ const props = defineProps({
   user: {
     type: Object,
     required: true
+  },
+  placeHolder: {
+    type: String,
+    default: ''
   }
 })
 
@@ -89,6 +108,13 @@ function handleImageClick(){
 function handleImageChange(event){
   const file = event.target.files[0];
   selectedFile.value = file;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    inputImageUrl.value = event.target.result;
+  }
+
+  reader.readAsDataURL(file);
 }
 
 </script>

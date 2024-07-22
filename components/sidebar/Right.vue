@@ -21,7 +21,7 @@ const happeningItems = ref([
     count: '19.7k Tweets'
   },
   {
-    title: '#CodingIsFun',
+    title: '#PressFForRossi',
     count: '10.7k Tweets'
   },
   {
@@ -37,13 +37,13 @@ const followItems = ref([
     imgSrc: 'https://picsum.photos/200/200'
   },
   {
-    name: 'Joe Boey',
-    username: '@joeBidey',
+    name: 'Rossi Stark',
+    username: '@rosstark',
     imgSrc: 'https://picsum.photos/200/200'
   },
   {
-    name: 'Joe Boey',
-    username: '@joeBidey',
+    name: 'Rossi Musk',
+    username: '@rosmusk',
     imgSrc: 'https://picsum.photos/200/200'
   },
 ])

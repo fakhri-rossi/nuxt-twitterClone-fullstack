@@ -5,7 +5,7 @@
     <TweetForm :user="user" />
 
   </MainSection>
-  <button @click="getUser">Get User!</button>
+  <!-- <button @click="getUser">Get User!</button> -->
 </template>
 
 <script setup>

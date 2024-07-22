@@ -7,7 +7,8 @@ import { getUserById } from "../db/users";
 export default defineEventHandler(async (event) => {
   const endPoints = [
     '/api/auth/user',
-    '/api/user/tweets'
+    '/api/user/tweets',
+    '/api/tweets'
   ]
 
   const isHandledByThisMiddleware = endPoints.some(endpoint => {

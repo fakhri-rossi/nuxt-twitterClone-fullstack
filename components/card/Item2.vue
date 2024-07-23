@@ -19,7 +19,7 @@
 
     <!-- follow button -->
     <div class="flex items-center h-full">
-      <button class="px-4 py-2 rounded-full font-bold text-xs text-white dark:text-black bg-black dark:bg-white">
+      <button class="flex items-center px-4 py-2 rounded-full font-bold text-xs text-white dark:text-black bg-black dark:bg-white">
         Follow
       </button>
     </div>

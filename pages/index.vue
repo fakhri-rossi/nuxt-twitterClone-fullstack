@@ -1,24 +1,46 @@
 <template>
+
+
   <MainSection title="Home" :loading="loading">
-    <!-- {{ user }} -->
 
-    <TweetForm :user="user" />
-
+    <TweetForm 
+    :user="user" 
+    place-holder="Type something..." 
+    class="border-b" 
+    :class="twitterBorderColor" 
+    />
+    
+    <TweetListFeed :tweets="homeTweets" />
   </MainSection>
-  <!-- <button @click="getUser">Get User!</button> -->
+
+
 </template>
 
 <script setup>
+useSeoMeta({
+  title: 'Home/Tweet'
+})
+
+const { twitterBorderColor } = useTailwindConfig();
+const { getHomeTweets } = useTweets();
+
 const user = useAuth().useAuthUser()
-const loading = ref(false)
+const loading = ref(false);
+const homeTweets = ref([]);
 
-const getUser = async () => {
-  const data = await $fetch('/api/auth/user', {
-    method: 'GET'
-  })
+onBeforeMount(async () => {
+  loading.value = true
+  try {
+    const {tweets} = await getHomeTweets()
+    homeTweets.value = tweets
 
-  console.log(data);
-}
+  } catch (error) {
+    console.log(error);
+
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <style>

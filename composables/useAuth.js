@@ -30,7 +30,6 @@ export const useAuth = () => {
             password
           }
         })
-        console.log(data);
         setToken(data.access_token);
         setUser(data.user);
 

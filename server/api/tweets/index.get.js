@@ -1,8 +1,8 @@
-import { getTweets } from "~/server/db/tweets"
+import { findTweets } from "~/server/db/tweets"
 import { tweetTransformer } from "~/server/transformers/tweet"
 
 export default defineEventHandler(async (event) => {
-  const tweets = await getTweets({
+  const tweets = await findTweets({
     include: {
       author: true,
       mediaFiles: true,
@@ -13,11 +13,10 @@ export default defineEventHandler(async (event) => {
       },
       replyTo: {
         include: {
-          author: true
+          author: true,
         }
       }
-    }
-  }, {
+    },
     orderBy: [
       {
         createdAt: "desc"

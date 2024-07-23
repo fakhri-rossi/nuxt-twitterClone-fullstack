@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
   // add http only cookie
   // setCookie(event, )
   sendRefreshToken(event, refreshToken);
-  console.log(event.headers);
+  // console.log(event.headers);
   // console.log(event.headers.cookie['refresh_token']);
   
   return {

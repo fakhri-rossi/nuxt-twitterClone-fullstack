@@ -6,7 +6,7 @@
     </div>
 
     <div v-else>
-      <TweetInput :user="props.user" place-holder="Type something..." @on-submit="handleFormSubmit" />
+      <TweetInput :user="props.user" :place-holder="props.placeHolder" @on-submit="handleFormSubmit" />
     </div>
 
   </div>
@@ -20,6 +20,10 @@ const props = defineProps({
   user: {
     type: Object,
     required: true
+  },
+  placeHolder: {
+    type: String,
+    default: 'Type...'
   }
 })
 

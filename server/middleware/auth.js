@@ -1,14 +1,13 @@
 import UrlPattern from "url-pattern"
 import { decodeAccessToken } from "../utils/jwt";
 import { getUserById } from "../db/users";
-// import { useCookie } from "nuxt/app";
-// import { useCookie } from "nuxt/app";
 
 export default defineEventHandler(async (event) => {
   const endPoints = [
     '/api/auth/user',
     '/api/user/tweets',
-    '/api/tweets'
+    '/api/tweets',
+    '/api/tweets/:id'
   ]
 
   const isHandledByThisMiddleware = endPoints.some(endpoint => {

@@ -16,7 +16,7 @@
     <SidebarLeftTab />
 
     <div class="mt-6 hidden lg:block">
-      <UiButton liquid>
+      <UiButton liquid @on-click="emits('onTweet')">
         <span class="font-bold">
           Tweet
         </span>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="mt-6 flex lg:hidden items-center p-3">
-      <UiButton>
+      <UiButton @on-click="emits('onTweet')" >
         <UIcon  class="h-6 w-6" name="i-ic-baseline-edit" />
       </UiButton>
     </div>
@@ -34,7 +34,7 @@
 
 <script setup>
 const transition = useTailwindConfig().defaultTransition;
-
+const emits = defineEmits(['onTweet']);
 
 </script>
 

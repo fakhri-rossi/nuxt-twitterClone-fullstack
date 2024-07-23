@@ -8,6 +8,7 @@
     place-holder="Type something..." 
     class="border-b" 
     :class="twitterBorderColor" 
+    @on-success="handleFormSuccess"
     />
     
     <TweetListFeed :tweets="homeTweets" />
@@ -22,7 +23,7 @@ useSeoMeta({
 })
 
 const { twitterBorderColor } = useTailwindConfig();
-const { getHomeTweets } = useTweets();
+const { getHomeTweets, redirectToTweetId } = useTweets();
 
 const user = useAuth().useAuthUser()
 const loading = ref(false);
@@ -41,6 +42,10 @@ onBeforeMount(async () => {
     loading.value = false
   }
 })
+
+function handleFormSuccess(tweet){
+  redirectToTweetId(tweet.id);
+}
 </script>
 
 <style>

@@ -21,12 +21,14 @@
     "human-time": "^0.0.2",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^3.1.2",
+    "mitt": "^3.0.1",
     "nuxt": "^3.12.3",
     "url-pattern": "^1.0.3",
     "vue": "latest"
   },
   "devDependencies": {
     "@prisma/client": "^5.17.0",
+    "nuxt-headlessui": "^1.2.0",
     "prisma": "^5.17.0"
   }
 }

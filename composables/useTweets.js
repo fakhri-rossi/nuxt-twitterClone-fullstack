@@ -1,7 +1,23 @@
 export default () => {
+  const usePostTweetModal = () => useState('post_tweet_modal', () => false)
+
+  const closePostTweetModal = () => {
+    usePostTweetModal().value = false;
+  }
+
+  const openPostTweetModal = () => {
+    usePostTweetModal().value = true;
+  }
+
+  const redirectToTweetId = (tweetId = String) => {
+    navigateTo(`/status/${tweetId}`);
+  }
+
   const postTweet = (formData) => {
+    
     const form = new FormData();
-    form.append('text', formData.text)
+    form.append('text', formData.text);
+    form.append('replyTo', formData.replyTo)
     
     formData.mediaFiles.forEach((mediaFile, index) => {
       form.append('media_file_' + index, mediaFile);
@@ -46,6 +62,10 @@ export default () => {
   return {
     postTweet,
     getHomeTweets,
-    getTweetById
+    getTweetById,
+    redirectToTweetId,
+    usePostTweetModal,
+    closePostTweetModal,
+    openPostTweetModal
   }
 }

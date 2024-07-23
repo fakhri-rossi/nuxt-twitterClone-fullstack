@@ -4,7 +4,11 @@
 
     <TweetItem :tweet="props.tweet" />
 
-    <TweetForm :user="props.user" place-holder="Type your reply..." />
+    <TweetForm 
+    :user="props.user" 
+    place-holder="Type your reply..." 
+    :reply-to="props.tweet" 
+    @on-success="handleFormSuccess"/>
 
     <TweetListFeed :tweets="tweets" empty-tweet-message="No replies" />
 
@@ -15,6 +19,8 @@
 </template>
 
 <script setup>
+const { redirectToTweetId } = useTweets();
+
 const props = defineProps({
   tweet: {
     type: Object,
@@ -27,6 +33,11 @@ const props = defineProps({
 })
 
 const tweets = computed(() => props.tweet?.replies || []);
+
+function handleFormSuccess(tweet){
+  redirectToTweetId(tweet.id);
+}
+
 </script>
 
 <style>

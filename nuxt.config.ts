@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@prisma/nuxt"],
+  modules: ["@nuxt/ui", "@prisma/nuxt", "nuxt-headlessui"],
+
+  headlessui: {
+    prefix: 'Headless'
+  },
 
   tailwindcss: {
     cssPath: ['~/assets/css/tailwind.css', { injectPosition: "first" }],

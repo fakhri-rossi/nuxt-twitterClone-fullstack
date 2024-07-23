@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
+const emits = defineEmits(['onSuccess']);
 const { postTweet } = useTweets();
 const loading = ref(false);
 
@@ -24,6 +25,10 @@ const props = defineProps({
   placeHolder: {
     type: String,
     default: 'Type...'
+  },
+  replyTo: {
+    type: Object,
+    default: null
   }
 })
 
@@ -32,9 +37,10 @@ async function handleFormSubmit(data){
   try {
     const response = await postTweet({
       text: data.text,
-      mediaFiles: data.mediaFiles
+      mediaFiles: data.mediaFiles,
+      replyTo: props.replyTo?.id
     });
-    alert(JSON.stringify(response));
+    emits('onSuccess', response.tweet);
     
   } catch (error) {
     console.log(error);

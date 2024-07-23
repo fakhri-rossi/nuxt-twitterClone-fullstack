@@ -1,12 +1,19 @@
 export default () => {
   const usePostTweetModal = () => useState('post_tweet_modal', () => false)
+  const useReplyTweet = () => useState('reply_tweet', () => null)
+
+  const setReplyTo = (tweet) => {
+    useReplyTweet().value = tweet;
+  }
 
   const closePostTweetModal = () => {
     usePostTweetModal().value = false;
   }
 
-  const openPostTweetModal = () => {
+  const openPostTweetModal = (tweet = null) => {
     usePostTweetModal().value = true;
+    setReplyTo(tweet);
+
   }
 
   const redirectToTweetId = (tweetId = String) => {
@@ -66,6 +73,7 @@ export default () => {
     redirectToTweetId,
     usePostTweetModal,
     closePostTweetModal,
-    openPostTweetModal
+    openPostTweetModal,
+    useReplyTweet
   }
 }

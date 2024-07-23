@@ -12,6 +12,7 @@
       <!-- icon -->
       <div 
       :class="`flex items-center p-2 rounded-full group-hover:bg-${action.color}-100 group-hover:text-${action.color}-400 dark:group-hover:bg-opacity-20`"
+      @click.prevent.stop="action.click"
       >
         <UIcon 
         :class="`w-${props.iconSize} h-${props.iconSize}`"
@@ -45,39 +46,47 @@ const props = defineProps({
   iconSize: {
     type: Number,
     default: 5
-  }
+  },
 })
 
 function generateRandomNumber(){
   return Math.floor( Math.random() * 100 )
 }
+function emptyClick(){
+  console.log('This action isnt clear yet');
+}
 
-const showStats = computed(() => props.compact)
+const showStats = computed(() => props.compact);
+const emits = defineEmits(['onCommentClick']);
 
 const actions = [
   {
     name: 'Comment',
     icon: 'i-heroicons-chat-bubble-oval-left-ellipsis',
     text: props.tweet.repliesCount,
-    color: 'blue'
+    color: 'blue',
+    click: () => emits('onCommentClick')
   },
   {
     name: 'Re-tweet',
     icon: 'i-ic-outline-sync',
     text: generateRandomNumber(),
-    color: 'green'
+    color: 'green',
+    click: () => emptyClick()
   },
   {
     name: 'Like',
     icon: 'i-ic-baseline-favorite-border',
     text: generateRandomNumber(),
-    color: 'red'
+    color: 'red',
+    click: () => emptyClick()
   },
   {
     name: 'Share',
     icon: 'i-ic-baseline-ios-share',
     text: generateRandomNumber(),
-    color: 'blue'
+    color: 'blue',
+    click: () => emptyClick()
   },
 ]
 

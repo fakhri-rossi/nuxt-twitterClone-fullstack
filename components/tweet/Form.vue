@@ -6,6 +6,11 @@
     </div>
 
     <div v-else>
+      <TweetItem 
+      v-if="props.replyTo && props.showReply" 
+      :tweet="props.replyTo"
+      hideActions />
+
       <TweetInput :user="props.user" :place-holder="props.placeHolder" @on-submit="handleFormSubmit" />
     </div>
 
@@ -29,7 +34,11 @@ const props = defineProps({
   replyTo: {
     type: Object,
     default: null
-  }
+  },
+  showReply: {
+    type: Boolean,
+    default: false
+  },
 })
 
 async function handleFormSubmit(data){

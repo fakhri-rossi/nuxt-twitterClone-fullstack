@@ -19,10 +19,13 @@
 
 
       <div class="mt-2">
-        <TweetItemActions 
+        <TweetItemActions
+        v-if="!props.hideActions"
+        class="z-25" 
         :tweet="tweet" 
         :compact="props.compact"
-        :icon-size="iconSize" />
+        :icon-size="iconSize" 
+        @on-comment-click="handleCommentClick" />
       </div>
     </div>
 
@@ -30,6 +33,8 @@
 </template>
 
 <script setup>
+
+const emitter = useEmitter();
 const { twitterBorderColor } = useTailwindConfig();
 const props= defineProps({
   tweet: {
@@ -40,11 +45,19 @@ const props= defineProps({
     type: Boolean,
     default: false
   },
+  hideActions: {
+    type: Boolean,
+    default: false
+  },
 })
 
 const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-2 mt-2' )
 const textSize = computed(() => props.compact ? 'text-base' : 'text-xl font-semibold')
 const iconSize = computed(() => props.compact ? 5 : 7)
+
+function handleCommentClick(){
+  emitter.$emit('replyTweet', props.tweet);
+}
 
 </script>
 

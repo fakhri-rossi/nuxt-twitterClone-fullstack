@@ -1,5 +1,9 @@
 <template>
-  <button class="flex items-center justify-center rounded-full text-white bg-blue-400 hover:bg-blue-500 disabled:bg-blue-300 disabled:cursor-not-allowed" :class="classes" :disabled="props.disabled" @click="handleClick">
+  <button 
+  class="flex items-center justify-center rounded-full text-white dark:text-dim-900 bg-blue-400 hover:bg-blue-500 disabled:bg-blue-300 disabled:cursor-not-allowed" 
+  :class="classes" 
+  :disabled="props.disabled" 
+  @click="handleClick">
 
     <!-- <span :class="textSize"> -->
       <slot />

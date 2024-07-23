@@ -45,8 +45,10 @@
 
         <TweetForm 
         :user="user" 
-        place-holder="Type something..." 
-        @on-success="handleFormSuccess" />
+        :replyTo="replyTweet"
+        showReply
+        placeHolder="Type something..." 
+        @onSuccess="handleFormSuccess" />
 
       </UiDialogModal>
 
@@ -58,11 +60,17 @@
 const enableDarkMode = ref(false);
 
 const { useAuthUser, initAuth, useAuthLoading } = useAuth();
-const { usePostTweetModal, closePostTweetModal, openPostTweetModal, redirectToTweetId } = useTweets();
+const { usePostTweetModal, closePostTweetModal, openPostTweetModal, redirectToTweetId, useReplyTweet } = useTweets();
 
 const user = useAuthUser();
 const isLoading = useAuthLoading();
 const showTweetModal = usePostTweetModal();
+const emitter = useEmitter();
+const replyTweet = useReplyTweet();
+
+emitter.$on('replyTweet', (tweet) => {
+  openPostTweetModal(tweet);
+})
 
 onBeforeMount(() => {
   initAuth();
@@ -78,7 +86,7 @@ function handleCloseModal(){
 }
 
 function handleOpenTweetModal(){
-  openPostTweetModal();
+  openPostTweetModal(null);
 }
 
 </script>

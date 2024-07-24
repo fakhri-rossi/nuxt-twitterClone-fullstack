@@ -108,11 +108,29 @@ export const useAuth = () => {
     })
   }
 
+  const logout = () => {
+    return new Promise( async (resolve, reject) => {
+      try {
+        console.log('logout clicked');
+        await useFetchApi('/api/auth/logout', {
+          method: 'post'
+        });
+        setToken(null);
+        setUser(null);
+        resolve(true);
+
+      } catch (error) {
+        reject(error);
+      }
+    })
+  }
+
   return {
     login,
     initAuth,
     useAuthUser,
     useAuthToken,
     useAuthLoading,
+    logout
   }
 }

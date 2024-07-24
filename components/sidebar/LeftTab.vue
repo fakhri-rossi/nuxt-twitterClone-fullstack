@@ -2,9 +2,9 @@
   <div class="flex flex-col gap-3">
     <NuxtLink v-for="(menu, i) in menus" :key="i" :to="menu.to" class="flex items-center p-3 gap-3 rounded-full hover:bg-gray-200 tet-black dark:hover:bg-dim-200 dark:text-white" :class="useTailwindConfig().defaultTransition">
       
-      <UIcon class="w-6 h-6" :name="menu.active ? menu.icon_active : menu.icon" />
+      <UIcon class="w-5 h-5" :name="menu.active ? menu.icon_active : menu.icon" />
   
-      <div class="hidden lg:block text-lg" :class="activeTab(menu.active)">
+      <div class="hidden lg:block text-md" :class="activeTab(menu.active)">
         {{ menu.label }}
       </div>
   

@@ -1,6 +1,6 @@
 <template>
   <div class="m-2 border rounded-2xl bg-gray-50 dark:bg-dim-700 overflow-hidden" :class="twitterBorderColor">
-    <h1 class="p-3 text-xl font-extrabold border-b text-gray-900 dark:text-white" :class="twitterBorderColor">
+    <h1 class="p-3 text-lg font-extrabold border-b text-gray-900 dark:text-white" :class="twitterBorderColor">
       {{ props.title }}
     </h1>
 

@@ -12,6 +12,11 @@ export default <Partial<Config>>{
         pattern: /bg-(red|green|blue)-(100|400)/,
         variants: ['group-hover']
       },
+      {
+        pattern: /border-(red|green|blue)-500/,
+        // variants: ['group-hover']
+        // variants: ['']
+      },
     ],
   
     theme: {

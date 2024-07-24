@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const refreshToken = getCookie(event, 'refresh_token')
 
     if(!refreshToken){
-        throw createError({
+        return createError({
             statusCode: 401,
             statusMessage: 'refresh_token is invalid'
         })
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     const newRefreshToken = await getRefreshTokenByToken(refreshToken);
 
     if(!newRefreshToken){
-        throw createError({
+        return createError({
             statusCode: 401,
             statusMessage: 'refresh_token is invalid'
         })
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
         const { accessToken } = generateToken(user);
         return { access_token: accessToken }
     } catch (error) {
-        throw createError({
+        return createError({
             statusCode: 500,
             statusMessage: 'Something went wrong'
         })

@@ -6,6 +6,8 @@ export const useAuth = () => {
   const useAuthUser = () => useState('auth_user');
   const useAuthLoading = () => useState('auth_loading', () => true);
 
+  const { turnOnAlert, turnOffAlert } = useAlert();
+
   const setToken = (newToken) => {
     useAuthToken().value = newToken;
   }
@@ -19,11 +21,12 @@ export const useAuth = () => {
   }
 
 
-  const login = ({username, password}) => {
+  const login = async ({username, password}) => {
 
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await $fetch('/api/auth/login', {
+        turnOffAlert();
+        const data = await useTestFetch('/api/auth/login', {
           method: 'POST',
           body: {
             username,
@@ -36,8 +39,34 @@ export const useAuth = () => {
         resolve(true);
 
       } catch (err) {
+        turnOnAlert(err.message, '', 'danger')
         reject(err)
 
+      }
+    })
+  }
+
+  const register = async ({username, password, repeatPassword, email, name}) => {
+    return new Promise(async (resolve, reject) => {
+      turnOffAlert();
+      try {
+        const data = await useTestFetch('/api/auth/register', {
+          method: 'POST',
+          body: {
+            username,
+            password,
+            repeatPassword,
+            email,
+            name
+          }
+        })
+        // console.log(data);
+        turnOnAlert('Register Berhasil!', 'Silahkan login dengan akun Anda!', 'success')
+        resolve(data);
+
+      } catch (err) {
+        turnOnAlert(err.message, '', 'danger')
+        reject(err);
       }
     })
   }
@@ -90,7 +119,6 @@ export const useAuth = () => {
 
   const initAuth = () => {
     setAuthLoading(true);
-    console.log('auth loading true');
     return new Promise(async (resolve, reject) => {
       try {
         await refreshToken();
@@ -103,7 +131,6 @@ export const useAuth = () => {
 
       } finally {
         setAuthLoading(false);
-        console.log('auth loading false');
       }
     })
   }
@@ -111,7 +138,6 @@ export const useAuth = () => {
   const logout = () => {
     return new Promise( async (resolve, reject) => {
       try {
-        console.log('logout clicked');
         await useFetchApi('/api/auth/logout', {
           method: 'post'
         });
@@ -127,6 +153,7 @@ export const useAuth = () => {
 
   return {
     login,
+    register,
     initAuth,
     useAuthUser,
     useAuthToken,

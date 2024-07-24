@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     await removeRefreshToken(refreshTokenCookie);
     
   } catch (error) {
-    
+    console.log(error);
   }
   
   sendRefreshToken(event, null);

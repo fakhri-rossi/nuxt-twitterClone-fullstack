@@ -1,69 +1,44 @@
 <template>
   <div class="w-full">
-
+    
     <div class="flex justify-center items-center">
       <div class="w-10 h-10">
         <LogoTwitter />
       </div>
     </div>
 
-    <div class="pt-5 space-y-6">     
+    <AuthFormLogin v-if="loginForm" />
 
-      <UiInputText 
-      name="username" 
-      label="Username" 
-      v-model="data.username"
-      placeholder="username" 
-      type="text" />
 
-  
-      <UiInputText 
-      name="password" 
-      label="Password" 
-      v-model="data.password"
-      placeholder="*******" 
-      type="password" />
+    <AuthFormRegister v-else />
 
-      <UiButton 
-      liquid 
-      @on-click="handleLogin"
-      :disabled="isButtonDisabled" >
-        Login
-      </UiButton>
+    <div class="flex items-center justify-center mt-5">
+      <p v-if="loginForm">
+        Don't have an account? 
+        <span @click="handleSwitch(() => loginForm = false)" class="text-blue-400">Register here</span>
+      </p>
 
+      <p v-else>
+        Have an account? 
+        <span @click="handleSwitch(() => loginForm = true)" class="text-blue-400">Login here</span>
+      </p>
     </div>
 
   </div>
 </template>
 
 <script setup>
-const { login } = useAuth();
-const data = reactive({
-  username: '',
-  password: '',
-  loading: false
+const { turnOffAlert } = useAlert();
+const loginForm = ref(true)
+
+onBeforeMount(() => {
+  turnOffAlert();
 })
 
-const handleLogin = async () => {
-  data.loading = true;
-
-  try {
-    await login({ 
-      username: data.username, 
-      password: data.password
-    });
-    
-  } catch (error) {
-    console.log(error);
-
-  } finally {
-    data.loading = false;
-  }
+function handleSwitch(callback){
+  turnOffAlert();
+  callback();
 }
-
-const isButtonDisabled = computed(() => {
-  return (!data.username || !data.password) || data.loading
-})
 </script>
 
 <style>

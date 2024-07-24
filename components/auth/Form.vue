@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div class="w-full">
+
+    <div class="flex justify-center items-center">
+      <div class="w-10 h-10">
+        <LogoTwitter />
+      </div>
+    </div>
 
     <div class="pt-5 space-y-6">     
 
@@ -18,9 +24,12 @@
       placeholder="*******" 
       type="password" />
 
-      <div>
-        <button @click="handleLogin">Login</button>
-      </div>
+      <UiButton 
+      liquid 
+      @on-click="handleLogin"
+      :disabled="isButtonDisabled" >
+        Login
+      </UiButton>
 
     </div>
 
@@ -51,6 +60,10 @@ const handleLogin = async () => {
     data.loading = false;
   }
 }
+
+const isButtonDisabled = computed(() => {
+  return (!data.username || !data.password) || data.loading
+})
 </script>
 
 <style>

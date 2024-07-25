@@ -1,4 +1,4 @@
-import { prisma } from ".";
+// import { prisma } from ".";
 import bcrypt from "bcrypt";
 
 export const createUser = async (userData) => {

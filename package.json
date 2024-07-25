@@ -32,5 +32,9 @@
     "@nuxtjs/device": "^3.1.1",
     "@prisma/client": "^5.17.0",
     "prisma": "^5.17.0"
-  }
+  },
+  "prisma:inline": "cp ./node_modules/.prisma/client/*.js ./node_modules/@prisma/client",
+  "prisma:migrate": "prisma migrate deploy && npm run prisma:inline",
+  "prisma:migrate:dev": "prisma migrate dev && npm run prisma:inline",
+  "prisma:generate": "prisma generate && npm run prisma:inline"
 }

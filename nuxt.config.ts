@@ -5,12 +5,15 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@prisma/nuxt"],
   //  '@nuxtjs/device'
   build: {
-    transpile: []
+    transpile: [],
+  },
+  alias: {
+    ".prisma/client/index-browser": "./node_modules/.prisma/client/index-browser.js"
   },
 
-  headlessui: {
-    prefix: 'Headless'
-  },
+  // headlessui: {
+  //   prefix: 'Headless'
+  // },
 
   tailwindcss: {
     cssPath: ['~/assets/css/tailwind.css', { injectPosition: "first" }],

@@ -61,6 +61,7 @@
 </template>
 
 <script setup>
+provideHeadlessUseId(() => useId())
 const enableDarkMode = ref(false);
 const { isMobile, isDesktop } = useDevice();
 

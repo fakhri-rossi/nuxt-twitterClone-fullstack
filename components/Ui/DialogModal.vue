@@ -50,7 +50,7 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
-} from '@headlessui/vue'
+} from 'nuxt-headlessui'
 
 const props = defineProps({
   isOpen: {

@@ -54,16 +54,16 @@
 
       </UiDialogModal>
 
-      <MobileNavbar v-if="isMobile && user && !isDesktop" />
+      <MobileNavbar class="block md:hidden" v-if="user" />
 
     </div>
   </div>
 </template>
 
 <script setup>
-provideHeadlessUseId(() => useId())
+// provideHeadlessUseId(() => useId())
 const enableDarkMode = ref(false);
-const { isMobile, isDesktop } = useDevice();
+// const { isMobile, isDesktop } = useDevice();
 
 const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth();
 const { usePostTweetModal, closePostTweetModal, openPostTweetModal, redirectToTweetId, useReplyTweet } = useTweets();

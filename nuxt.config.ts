@@ -2,11 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["nuxt-headlessui", "@nuxtjs/device", "@nuxt/ui", "@prisma/nuxt"],
+  modules: ["@nuxt/ui", "@prisma/nuxt"],
   //  '@nuxtjs/device'
-  // build: {
-  //   transpile: []
-  // },
+  build: {
+    transpile: []
+  },
 
   headlessui: {
     prefix: 'Headless'

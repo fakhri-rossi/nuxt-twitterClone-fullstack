@@ -3,7 +3,7 @@
 
   <MainSection title="Search" :loading="loading">
 
-    <SearchBar v-if="useDevice().isMobile && useAuth().useAuthUser().value" />
+    <SearchBar class="block md:hidden" v-if="useAuth().useAuthUser().value" />
 
     
     <TweetListFeed :tweets="searchTweet" />

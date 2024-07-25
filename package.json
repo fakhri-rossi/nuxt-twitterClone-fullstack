@@ -28,6 +28,7 @@
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxtjs/device": "^3.1.1",
     "@prisma/client": "^5.17.0",
     "nuxt-headlessui": "^1.2.0",
     "prisma": "^5.17.0"

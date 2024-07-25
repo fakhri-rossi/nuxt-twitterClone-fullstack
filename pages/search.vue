@@ -3,6 +3,7 @@
 
   <MainSection title="Search" :loading="loading">
 
+    <SearchBar v-if="useDevice().isMobile && useAuth().useAuthUser().value" />
 
     
     <TweetListFeed :tweets="searchTweet" />
@@ -12,6 +13,8 @@
 </template>
 
 <script setup>
+import SearchBar from '~/components/Ui/SearchBar.vue';
+
 useSeoMeta({
   title: 'Search'
 })

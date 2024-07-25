@@ -22,3 +22,13 @@ export const findTweetById = (tweetId, params = {}) => {
         },
     })
 }
+
+export const findTweetByAuthorId = (authorId, params = {}) => {
+    return prisma.user.findUnique({
+        ...params,
+        where: {
+            ...params.where,
+            id: authorId
+        },
+    })
+}

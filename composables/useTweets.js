@@ -67,6 +67,20 @@ export default () => {
     })
   }
 
+  const getTweetByUserId = (userId) => {
+    return new Promise( async (resolve, reject) => {
+      try {
+        const response = await useFetchApi(`/api/tweets/user/${userId}`, {
+          method: 'GET'
+        });
+        resolve(response);
+
+      } catch (error) {
+        reject(error);
+      }
+    })
+  }
+
   return {
     postTweet,
     getTweets,
@@ -75,6 +89,7 @@ export default () => {
     usePostTweetModal,
     closePostTweetModal,
     openPostTweetModal,
-    useReplyTweet
+    useReplyTweet,
+    getTweetByUserId
   }
 }

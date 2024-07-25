@@ -22,12 +22,12 @@
       accept="image/png, image/gif, image/jpeg, image/jpg" @change="handleImageChange">
     </div>
 
-    <div class="flex p-2 pl-14">
+    <div class="flex p-2 pl-14" :class="isMobile">
       <div class="flex text-white w-full">
         
         <!-- inputMenu icons -->
         <div v-for="(inputMenu, i) in inputMenus" :key="i" class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer flex items-center" @click="inputMenu.click">
-          <UIcon class="w-6 h-6" :name="inputMenu.icon" />
+          <UIcon class="w-6 h-6 z-10" :name="inputMenu.icon" />
         </div>
         
       </div>
@@ -54,6 +54,10 @@ const inputImageUrl = ref(null);
 const emits = defineEmits(['onSubmit']);
 const { twitterBorderColor } = useTailwindConfig();
 const isDisabled = computed(() => text.value === '')
+
+const isMobile = computed(() => {
+  return useDevice().isMobile ? 'pl-2' : '';
+})
 
 const inputMenus = [
   { 

@@ -21,7 +21,7 @@
       <div class="mt-2">
         <TweetItemActions
         v-if="!props.hideActions"
-        class="z-25" 
+        class="z-10" 
         :tweet="tweet" 
         :compact="props.compact"
         :icon-size="iconSize" 

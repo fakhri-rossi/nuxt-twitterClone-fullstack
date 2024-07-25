@@ -15,8 +15,7 @@
             <div class="sticky top-0">
               <SidebarLeft 
               :user="user" 
-              @on-tweet="handleOpenTweetModal"
-              @on-logout="handleUserLogout" />
+              @on-tweet="handleOpenTweetModal" />
             </div>
           </div>
   
@@ -55,12 +54,15 @@
 
       </UiDialogModal>
 
+      <MobileNavbar v-if="isMobile && user && !isDesktop" />
+
     </div>
   </div>
 </template>
 
 <script setup>
 const enableDarkMode = ref(false);
+const { isMobile, isDesktop } = useDevice();
 
 const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth();
 const { usePostTweetModal, closePostTweetModal, openPostTweetModal, redirectToTweetId, useReplyTweet } = useTweets();

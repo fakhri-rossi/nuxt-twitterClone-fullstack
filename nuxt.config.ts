@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/ui", "@prisma/nuxt", "nuxt-headlessui", '@nuxtjs/device'],
 
+  // build: {
+  //   transpile: []
+  // },
+
   headlessui: {
     prefix: 'Headless'
   },

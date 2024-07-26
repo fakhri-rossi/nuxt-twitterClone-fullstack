@@ -22,7 +22,7 @@
       accept="image/png, image/gif, image/jpeg, image/jpg" @change="handleImageChange">
     </div>
 
-    <div class="flex p-2 pl-14" :class="isMobile">
+    <div class="flex p-2 pl-2 lg:pl-14">
       <div class="flex text-white w-full">
         
         <!-- inputMenu icons -->
@@ -55,9 +55,9 @@ const emits = defineEmits(['onSubmit']);
 const { twitterBorderColor } = useTailwindConfig();
 const isDisabled = computed(() => text.value === '')
 
-const isMobile = computed(() => {
-  return useDevice().isMobile ? 'pl-2' : '';
-})
+// const isMobile = computed(() => {
+//   return useDevice().isMobile ? 'pl-2' : '';
+// })
 
 const inputMenus = [
   { 

@@ -1,15 +1,6 @@
 <template>
 
-  <MainSection 
-  :title="`Profile`" class="border-b" 
-  :class="twitterBorderColor" 
-  :loading="loading">
-    
-    <!-- <div class="w-full flex items-center pl-4 border-b" :class="twitterBorderColor">
-      <h1 class="font-bold text-lg">
-        {{ user.name }}
-      </h1>
-    </div> -->
+  <MainSection :title="`Profile`" class="border-b" :class="twitterBorderColor" :loading="loading">
 
     <div class="p-4 pt-0">
 
@@ -21,18 +12,16 @@
         <!-- head infos -->
         <div class="w-full flex justify-around">
 
-          <div 
-          class="flex flex-col items-center" 
-          v-for="headInfo in headInfos">
+          <div class="flex flex-col items-center" v-for="headInfo in headInfos">
             <h3 class="font-bold text-gray-800 dark:text-white">{{ headInfo.label }}</h3>
 
-            <p class="text-sm text-gray-800 dark:text-white">{{headInfo.value}}</p>
+            <p class="text-sm text-gray-800 dark:text-white">{{ headInfo.value }}</p>
           </div>
 
         </div>
 
       </div>
-      
+
       <div class="mt-3 px-1">
         <h2 class="font-bold text-lg">
           {{ user.name }}
@@ -42,7 +31,19 @@
           {{ user.handle }}
         </p>
       </div>
-      
+
+      <div class="flex items-center justify-center my-3 w-full">
+        <p class="text-xs text-gray-500 text-center">
+          Disclaimer: this web app belongs to <UiSpanLink new-tab to="https://github.com/fakhri-rossi">Fakhri Rossi
+          </UiSpanLink>
+          in
+          terms of personal project
+          <br>
+          Contact me for your feedback <UiSpanLink new-tab="" to="https://www.linkedin.com/in/fakhri-rossi/">here!
+          </UiSpanLink>
+        </p>
+      </div>
+
     </div>
 
     <div class="flex w-full px-4 justify-end items-center">
@@ -56,23 +57,11 @@
         <UiSpinner v-if="data.loading" />
       </div>
 
-      <TweetListFeed v-if="!data.loading" :tweets="userTweets"  />
+      <TweetListFeed v-if="!data.loading" :tweets="userTweets" />
     </div>
-      
-    </MainSection>
 
-    <!-- <UiDialogModal >
-      <div class="bg-red">
-        tes123
-      </div>
-    </UiDialogModal> -->
+  </MainSection>
 
-  <!-- <div v-if="data.showLogout"
-  class="sticky z-50 left-0 bg-black/50 w-screen h-screen flex justify-center items-center" >
-    <div class="bg-white rounded-xl">
-      123
-    </div>
-  </div> -->
 
 </template>
 
@@ -110,29 +99,26 @@ const user = useAuthUser().value;
 
 const userTweets = ref([]);
 
-onBeforeMount( async() => {
+onBeforeMount(async () => {
   data.loading = true;
   try {
     const { tweets } = await getTweetByUserId(user.id);
-    console.log(user.id);
     userTweets.value = tweets;
 
   } catch (error) {
     console.log(error);
 
-  } finally{
+  } finally {
     data.loading = false;
   }
 
 })
 
-function handleLogoutClick(){
+function handleLogoutClick() {
   // alert('hello')
   logout()
 }
 
 </script>
 
-<style>
-
-</style>
+<style></style>

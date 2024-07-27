@@ -4,13 +4,10 @@
 
     <TweetItem :tweet="props.tweet" />
 
-    <TweetForm 
-    :user="props.user" 
-    place-holder="Type your reply..." 
-    :reply-to="props.tweet" 
-    @on-success="handleFormSuccess"/>
+    <TweetForm :user="props.user" place-holder="Type your reply..." :reply-to="props.tweet"
+      @on-success="handleFormSuccess" />
 
-    <TweetListFeed :tweets="tweets" empty-tweet-message="No replies" />
+    <TweetListFeed :tweets="tweets" empty-tweet-message="No replies" :show-reply-to="false" />
 
 
   </div>
@@ -34,12 +31,10 @@ const props = defineProps({
 
 const tweets = computed(() => props.tweet?.replies || []);
 
-function handleFormSuccess(tweet){
+function handleFormSuccess(tweet) {
   redirectToTweetId(tweet.id);
 }
 
 </script>
 
-<style>
-
-</style>
+<style></style>

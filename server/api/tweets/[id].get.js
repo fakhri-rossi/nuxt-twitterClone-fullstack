@@ -10,8 +10,9 @@ export default defineEventHandler(async (event) => {
       mediaFiles: true,
       replyTo: {
         include: {
-          author: true
-        }
+          author: true,
+          mediaFiles: true,
+        },
       },
       replies: {
         include: {
@@ -19,15 +20,15 @@ export default defineEventHandler(async (event) => {
           author: true,
           replyTo: {
             include: {
-              author: true
-            }
-          }
-        }
-      }
-    }
+              author: true,
+            },
+          },
+        },
+      },
+    },
   });
 
   return {
-    tweet: tweetTransformer(result)
-  }
-})
+    tweet: tweetTransformer(result),
+  };
+});

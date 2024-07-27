@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    
+
     <div class="flex justify-center items-center">
       <div class="w-10 h-10">
         <LogoTwitter />
@@ -14,13 +14,13 @@
 
     <div class="flex items-center justify-center mt-5">
       <p v-if="loginForm">
-        Don't have an account? 
-        <span @click="handleSwitch(() => loginForm = false)" class="text-blue-400">Register here</span>
+        Don't have an account?
+        <span @click="handleSwitch(() => loginForm = false)" class="text-blue-400 cursor-pointer">Register here</span>
       </p>
 
       <p v-else>
-        Have an account? 
-        <span @click="handleSwitch(() => loginForm = true)" class="text-blue-400">Login here</span>
+        Have an account?
+        <span @click="handleSwitch(() => loginForm = true)" class="text-blue-400 cursor-pointer">Login here</span>
       </p>
     </div>
 
@@ -35,12 +35,10 @@ onBeforeMount(() => {
   turnOffAlert();
 })
 
-function handleSwitch(callback){
+function handleSwitch(callback) {
   turnOffAlert();
   callback();
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
